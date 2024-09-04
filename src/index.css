@@ -1,0 +1,10 @@
+body {
+  margin: 0;
+  background-color: rgba(250, 235, 215, 0.227);
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
