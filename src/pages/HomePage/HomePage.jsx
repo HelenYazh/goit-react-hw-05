@@ -1,10 +1,13 @@
 import { useState } from "react";
-import { fetchTrendingMovies } from "../movies-api";
+import { fetchTrendingMovies } from "../../movies-api";
 import { useEffect } from "react";
+import css from "./HomePage.module.css";
+import MovieList from "../../components/MovieList/MovieList";
+import Loader from "../../components/Loader/Loader";
 
 const HomePage = () => {
-  const [movies, setMovies] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [movies, setMovies] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -22,18 +25,11 @@ const HomePage = () => {
     fetchMovies();
   }, []);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
   return (
     <div>
-      <h1>Trending today</h1>
-      <ul>
-        {movies.map((item) => {
-          return <li key={item.id}>{item.title}</li>;
-        })}
-      </ul>
+      <h1 className={css.title}>Trending today</h1>
+      {loading && <Loader />}
+      {movies.length > 0 && <MovieList movies={movies} />}
     </div>
   );
 };
