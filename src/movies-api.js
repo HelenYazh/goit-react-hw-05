@@ -6,40 +6,29 @@ axios.defaults.headers.common["Authorization"] = `Bearer ${API_TOKEN}`
 
 export const fetchTrendingMovies = async () => {
     const response = await axios.get("/trending/movie/day")
-    console.log(response);
-
     return response.data.results;
 }
 
 export const requestMoviesBySearchValue = async (query) => {
     const response = await axios.get(`search/movie?query=${query}`);
-
-    console.log(response);
-
     return response.data.results;
 
 }
 
 export const fetchMovie = async (movieId) => {
     const response = await axios.get(`/movie/${movieId}`)
-
-    console.log(response.data);
     return response.data;
 
 }
 
 export const fetchMovieCast = async (movieId) => {
     const response = await axios.get(`movie/${movieId}/credits`)
-
-    console.log(response);
-    return response;
+    return response.data.cast;
 
 }
 
 export const fetchMovieReviews = async (movieId) => {
     const response = await axios.get(`movie/${movieId}/reviews`)
-
-    console.log(response);
-    return response;
+    return response.data.results;
 
 }

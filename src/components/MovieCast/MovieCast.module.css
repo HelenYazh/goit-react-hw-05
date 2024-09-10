@@ -1,0 +1,47 @@
+.wrapper {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 0;
+  list-style: none;
+  justify-content: center;
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 150px;
+  text-align: center;
+  padding: 10px;
+}
+
+.img {
+  width: 100%;
+  border-radius: 10px;
+  height: 200px;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.title {
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+p {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 0;
+}
