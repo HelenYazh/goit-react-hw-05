@@ -1,9 +1,9 @@
-
+import { fetchMovieCast } from "../../movies-api";
 
 const MovieCast = () => {
-  return (
-    <div>MovieCast</div>
-  )
-}
+  fetchMovieCast();
 
-export default MovieCast
+  return <div>MovieCast</div>;
+};
+
+export default MovieCast;
