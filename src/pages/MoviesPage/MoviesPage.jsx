@@ -1,38 +1,53 @@
-import toast, { Toaster } from "react-hot-toast";
-import { FcSearch } from "react-icons/fc";
+import { useSearchParams } from "react-router-dom";
+import SearchForm from "../../components/SearchForm/SearchForm";
+import { useEffect, useState } from "react";
+import { requestMoviesBySearchValue } from "../../movies-api";
+import Loader from "../../components/Loader/Loader";
+import MovieList from "../../components/MovieList/MovieList";
 
-const MoviesPage = ({ onSubmit }) => {
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const keyword = form.elements.keyword.value;
+const MoviesPage = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [movies, setMovies] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-    if (keyword.trim() === "") {
-      toast.error("Please enter your search query for movies");
-      return;
-    }
+  const query = searchParams.get("query");
 
-    onSubmit(keyword);
-    form.reset();
+  useEffect(() => {
+    if (!query) return;
+
+    const fetchMoviesBySearchValue = async () => {
+      try {
+        setLoading(true);
+        if (query) {
+          const movie = await requestMoviesBySearchValue(query);
+          setMovies(movie);
+        }
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchMoviesBySearchValue();
+  }, [query]);
+
+  const onSearch = (searchTerm) => {
+    setSearchParams({
+      query: searchTerm,
+    });
   };
 
   return (
     <>
-      <div>
-        <Toaster />
-      </div>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="keyword"
-          autoComplete="off"
-          autoFocus
-          placeholder="Search movies"
-        />
-        <button type="submit">
-          <FcSearch />
-        </button>
-      </form>
+      <SearchForm defaultSearchValue={query} onSearch={onSearch} />
+      {loading && <Loader />}
+      {error && <h3>{error}</h3>}
+      {!loading && !error && movies.length === 0 && query && (
+        <h3>No movies found for &quot;{query}&quot;</h3>
+      )}
+      {movies.length > 0 && <MovieList movies={movies} />}
     </>
   );
 };

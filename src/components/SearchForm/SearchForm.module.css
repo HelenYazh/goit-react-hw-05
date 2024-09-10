@@ -1,0 +1,25 @@
+.form {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  border-bottom: 1px black solid;
+}
+.input {
+  height: 50px;
+  width: 250px;
+  border: none;
+  padding-left: 16px;
+  font-size: 16px;
+}
+.btn {
+  all: unset;
+  cursor: pointer;
+  background-color: #fff;
+  height: 50px;
+  width: 50px;
+  text-align: center;
+  border: none;
+}

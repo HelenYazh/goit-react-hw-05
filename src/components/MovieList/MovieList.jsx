@@ -3,7 +3,7 @@ import css from "./MovieList.module.css";
 
 const MovieList = ({ movies }) => {
   return (
-    <div>
+    <div className={css.wrapper}>
       {movies !== null && (
         <ul className={css.list}>
           {movies.map((item) => {

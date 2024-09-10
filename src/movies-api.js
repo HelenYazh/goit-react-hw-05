@@ -9,4 +9,13 @@ export const fetchTrendingMovies = async () => {
     console.log(response);
 
     return response.data.results;
-} 
+}
+
+export const requestMoviesBySearchValue = async (query) => {
+    const response = await axios.get(`search/movie?query=${query}`);
+
+    console.log(response);
+
+    return response.data.results;
+
+}
