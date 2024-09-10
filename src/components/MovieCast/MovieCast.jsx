@@ -22,7 +22,7 @@ const MovieCast = () => {
 
   return (
     <div className={css.wrapper}>
-      {cast !== null && (
+      {cast !== null && cast.length > 0 ? (
         <ul className={css.list}>
           {cast.map((item) => {
             return (
@@ -38,6 +38,8 @@ const MovieCast = () => {
             );
           })}
         </ul>
+      ) : (
+        <p>No cast available.</p>
       )}
     </div>
   );
